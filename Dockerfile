@@ -14,6 +14,8 @@ RUN apt-get install -y libicu-dev
 ADD https://dot.net/v1/dotnet-install.sh .
 RUN chmod +x ./dotnet-install.sh
 RUN ./dotnet-install.sh -c Current
+ENV PATH "$PATH:/root/.dotnet/dotnet"
+RUN rm -f ./dotnet-install.sh
 
 # other build dependencies
 RUN apt-get update
@@ -25,6 +27,7 @@ ADD https://vstsagentpackage.azureedge.net/agent/$VSTS_VERSION/vsts-agent-linux-
 RUN tar xzf vsts-agent-linux-x64-$VSTS_VERSION.tar.gz \
   && ./bin/installdependencies.sh \
   && chown -R vsts:vsts /agent
+RUN rm -f ./vsts-agent-linux-x64-$VSTS_VERSION.tar.gz
 
 # cleanup
 RUN rm -rf /var/lib/apt/lists/*
