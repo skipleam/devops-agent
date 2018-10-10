@@ -32,6 +32,7 @@ RUN curl -sL https://vstsagentpackage.azureedge.net/agent/$VSTS_VERSION/vsts-age
     && chown -R vsts:vsts /agent \
     && chown -R vsts:vsts /root \
     && chown -R vsts:vsts /home \
+    && chown -R vsts:vsts /usr \
     && echo "...folders owned."
 
 # cleanup
