@@ -41,9 +41,12 @@ RUN rm -f ./dotnet-install.sh \
     && rm -rf /var/lib/apt/lists/*
 
 # verify -- uncomment this for troubleshooting
-# RUN dotnet --version \
-#     && node --version \
-#     && npm --version
+RUN echo ==================================== \
+    && dotnet --version \
+    && node --version \
+    && npm --version \
+    && echo $CHROME_BIN \
+    && echo ====================================
 
 USER vsts
 
